@@ -22,7 +22,7 @@ The system extracts acoustic features from each recording, trains a separate mod
 
 
 
-\### Key Results
+\## Key Results
 
 
 
@@ -44,7 +44,7 @@ The system extracts acoustic features from each recording, trains a separate mod
 
 
 
-\- \*\*Audio feature extraction:\*\* Extracts 20 MFCC coefficients, along with Delta and Delta-Delta features, to represent spectral characteristics and their temporal changes.
+\- \*\*Audio feature extraction:\*\* Extracts MFCC, Delta, and Delta-Delta features to represent spectral characteristics and their temporal changes.
 
 \- \*\*Custom K-Means implementation:\*\* Builds a 48-centroid acoustic codebook for converting continuous audio features into discrete observation sequences.
 
@@ -62,17 +62,17 @@ The system extracts acoustic features from each recording, trains a separate mod
 
 
 
-1\. \*\*Load audio:\*\* Read the WAV recordings and extract their digit and speaker labels from the filenames.
+1\. \*\*Load audio:\*\* Read the WAV recordings and extract digit and speaker labels from filenames.
 
 2\. \*\*Extract features:\*\* Calculate MFCC, Delta, and Delta-Delta features using Librosa.
 
-3\. \*\*Normalize features:\*\* Standardize the extracted features using training-set statistics.
+3\. \*\*Normalize features:\*\* Standardize extracted features using training-set statistics.
 
 4\. \*\*Build the codebook:\*\* Train K-Means with 48 centroids to represent acoustic observations as discrete symbols.
 
 5\. \*\*Train digit classifiers:\*\* Train one GMM and one discrete HMM for each digit class.
 
-6\. \*\*Evaluate generalization:\*\* Evaluate both models on validation and test speakers that are excluded from training.
+6\. \*\*Evaluate generalization:\*\* Evaluate both models on speakers excluded from training.
 
 7\. \*\*Compare performance:\*\* Calculate accuracy, confusion matrices, and per-digit results.
 
@@ -100,7 +100,7 @@ The project contains 3,000 WAV recordings distributed across 10 digit classes an
 
 
 
-The speaker-based split helps evaluate generalization to voices that the models did not encounter during training.
+The speaker-based split helps evaluate generalization to voices the models did not encounter during training.
 
 
 
@@ -112,21 +112,21 @@ The speaker-based split helps evaluate generalization to voices that the models 
 
 Solutions\_DA24B029/
 
-├── main.py          # Training and evaluation pipeline
+├── main.py
 
-├── features.py      # Audio loading, MFCC features, and K-Means
+├── features.py
 
-├── gmm.py           # Custom Gaussian Mixture Model
+├── gmm.py
 
-├── hmm.py           # Custom discrete Hidden Markov Model
+├── hmm.py
 
-├── recordings/      # WAV audio dataset
+├── recordings/
 
-├── Report.pdf       # Project report
+├── Report.pdf
 
-├── Details.txt      # Project identification details
+├── Details.txt
 
-└── README.md        # Project documentation
+└── README.md
 
 ```
 
@@ -160,7 +160,7 @@ Solutions\_DA24B029/
 
 \- pip
 
-\- The audio recordings included in the `recordings/` directory
+\- The audio recordings in the `recordings/` directory
 
 
 
@@ -178,7 +178,7 @@ cd AI\_Project
 
 
 
-\### 2. Create and activate a virtual environment
+\### 2. Create a virtual environment
 
 
 
@@ -228,7 +228,7 @@ python -m pip install numpy librosa matplotlib soundfile
 
 
 
-Ensure the `recordings/` directory is present in the project root, then run:
+Ensure that `recordings/` and the Python files are in the project root, then run:
 
 
 
@@ -240,7 +240,7 @@ python main.py
 
 
 
-The program loads the recordings, trains the models, evaluates validation and test performance, and displays confusion matrices and per-digit accuracy statistics.
+The program runs the training and evaluation pipeline. The exact outputs depend on the implementation in `main.py`.
 
 
 
@@ -252,7 +252,7 @@ The program loads the recordings, trains the models, evaluates validation and te
 
 
 
-The GMM models the distribution of acoustic feature vectors for each digit. The implementation uses the expectation-maximization algorithm to estimate mixture weights, means, and diagonal covariance matrices. Classification is performed using log-likelihood scores.
+The GMM models the distribution of acoustic feature vectors for each digit. The implementation uses the expectation-maximization algorithm to estimate mixture weights, means, and diagonal covariance matrices. Classification uses log-likelihood scores.
 
 
 
@@ -268,7 +268,7 @@ The discrete HMM models temporal patterns in audio using hidden states and discr
 
 
 
-The reported evaluation shows that the GMM achieved 85.8% accuracy, compared with 80.0% for the HMM. On this dataset and evaluation setup, the GMM performed better at distinguishing spoken digits from unseen speakers.
+The reported evaluation shows that GMM achieved \*\*85.8% accuracy\*\*, compared with \*\*80.0% for HMM\*\*. On this dataset and evaluation setup, GMM performed better at recognizing digits from unseen speakers.
 
 
 
@@ -299,8 +299,4 @@ The reported evaluation shows that the GMM achieved 85.8% accuracy, compared wit
 B.Tech — Data Analytics and Artificial Intelligence  
 
 Indian Institute of Technology Madras
-
-
-
-
 
